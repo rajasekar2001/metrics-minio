@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+
+### minio container
+  minio:
+    container_name: minio-local
+    image: quay.io/minio/minio 
+    restart: unless-stopped
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=minio
+      - MINIO_ROOT_PASSWORD=minio123
+    ports:
+      - 9000:9000
+      - 9001:9001
+
+### Application container
+  metrics-python:
+     container_name: metrics-python
+     image: quay.io/mrajasekar2001/metrics-python:v2

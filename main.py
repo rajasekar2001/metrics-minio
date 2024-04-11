@@ -7,15 +7,15 @@ from minio import Minio
 # Kafka settings
 bootstrap_servers = 'observai-kafka-external-bootstrap-observability-kafka.apps.zagaobservability.zagaopensource.com:443'
 topic = 'observai_main_metrics_1'
-kafka_ssl_cafile = "D:\\METRICS\\kafka_certs\\observai.pem"
-kafka_ssl_certfile = "D:\\METRICS\\kafka_certs\\observai.crt"
+kafka_ssl_cafile = "./kafka_certs/observai.pem"
+kafka_ssl_certfile = "./kafka_certs/observai.crt"
 
 # MinIO settings
 minio_endpoint = 'localhost:9000'
-minio_access_key = 'myaccesskey'
-minio_secret_key = 'mysecretkey'
+minio_access_key = 'metricsdata'
+minio_secret_key = 'metricsdata'
 minio_secure = False
-minio_bucket = 'star'
+minio_bucket = 'metrics-data'
 minio_client = Minio(minio_endpoint,
                      access_key=minio_access_key,
                      secret_key=minio_secret_key,
