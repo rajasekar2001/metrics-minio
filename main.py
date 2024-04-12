@@ -12,8 +12,8 @@ kafka_ssl_certfile = "./kafka_certs/observai.crt"
 
 # MinIO settings
 minio_endpoint = 'localhost:9000'
-minio_access_key = 'metricsdata'
-minio_secret_key = 'metricsdata'
+minio_access_key = 'minio'
+minio_secret_key = 'minio123'
 minio_secure = False
 minio_bucket = 'metrics-data'
 minio_client = Minio(minio_endpoint,
@@ -89,7 +89,9 @@ def consume_and_process_messages():
     try:
         for message in consumer:
             json_data = json.loads(message.value)
-            output_list = extract_data(json_data)
+            output_list = extract_data(json_data)           
+            print("Output List:", output_list)
+
 
             for item in output_list:
                 upload_to_minio(item, minio_bucket, minio_client, batch_number, item_index)
